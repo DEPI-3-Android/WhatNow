@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">What Now</string>
+    <string name="login">تسجيل  الدخول</string>
+    <string name="sign_up">إنشاء حساب</string>
+    <string name="password">كلمة المرور</string>
+    <string name="con_password">تأكيد كلمة المرور</string>
+    <string name="or">أو</string>
+    <string name="welcome_back">مرحباً بعودتك</string>
+    <string name="you_have_been_missed">لقد افتقدناك!</string>
+    <string name="email">البريد اللإلكتروني</string>
+    <string name="new_user">ليس لديك حساب؟ <font color="#e21220"><u>أنشئ حسابًا الآن!</u></font></string>
+    <string name="old_user">هل لديك حساب؟ <font color="#e21220"><u>سجّل الدخول الآن!</u></font></string>
+    <string name="create_an_account">أنشئ حسابًا الآن</string>
+    <string name="join_whatnow_to">انضم إلى WhatNow لاستكشاف الأفلام، واكتشاف التفاصيل، وحفظ مفضلاتك.</string>
+    <string name="google">تابع باستخدام Google</string>
+    <string name="required">هذا الحقل مطلوب!</string>
+    <string name="Passwords_dont_match">كلمتا المرور غير متطابقتين</string>
+    <string name="check_your_email">من فضلك تحقق من بريدك الإلكتروني لتفعيل حسابك.</string>
+    <string name="password_long">كلمة المرور يجب أن تتكون من 6 أحرف على الأقل.</string>
+    <string name="invalid_email">صيغة البريد الإلكتروني غير صحيحة</string>
+    <string name="pass_reset">من فضلك تحقق من بريدك الإلكتروني لإعادة تعيين كلمة المرور.</string>
+    <string name="verify_email">الرجاء تأكيد بريدك الإلكتروني.</string>
+    <string name="login_failed">تعذر تسجيل الدخول: تحقق من البريد الإلكتروني وكلمة المرور.</string>
+    <string name="forgot_your_password"><u>هل نسيت كلمة المرور؟</u></string>
+</resources>

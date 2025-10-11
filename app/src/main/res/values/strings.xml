@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">What Now</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="con_password">Confirm password</string>
+    <string name="new_user">Do not have an account? <font color="#e21220"><u>Sign up now!</u></font></string>
+    <string name="old_user">Have an account? <font color="#e21220"><u>Login now!</u></font></string>
+    <string name="or">OR</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="you_have_been_missed">You have been missed!</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="join_whatnow_to">Join WhatNow to explore movies, discover details, and save your favorites.</string>
+    <string name="google">Continue with Google</string>
+    <string name="required">this field is required!</string>
+    <string name="Passwords_dont_match">Passwords don’t match</string>
+    <string name="check_your_email">Please check your email to activate your account.</string>
+    <string name="password_long">Password must be at least 6 characters long.</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="pass_reset">Please check your email to reset your password.</string>
+    <string name="verify_email">Please verify your email</string>
+    <string name="login_failed">Login failed: please check your email and password.</string>
+    <string name="forgot_your_password"><u>Forgot your password?</u></string>
+    <string name="default_web_client_id">test</string>
+</resources>
