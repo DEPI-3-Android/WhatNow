@@ -9,8 +9,8 @@
     <string name="welcome_back">مرحباً بعودتك</string>
     <string name="you_have_been_missed">لقد افتقدناك!</string>
     <string name="email">البريد اللإلكتروني</string>
-    <string name="new_user">ليس لديك حساب؟ <font color="#e21220"><u>أنشئ حسابًا الآن!</u></font></string>
-    <string name="old_user">هل لديك حساب؟ <font color="#e21220"><u>سجّل الدخول الآن!</u></font></string>
+    <string name="new_user">ليس لديك حساب؟ <font color="#6750a4"><u>أنشئ حسابًا الآن!</u></font></string>
+    <string name="old_user">هل لديك حساب؟ <font color="#6750a4"><u>سجّل الدخول الآن!</u></font></string>
     <string name="create_an_account">أنشئ حسابًا الآن</string>
     <string name="join_whatnow_to">انضم إلى WhatNow لاستكشاف الأفلام، واكتشاف التفاصيل، وحفظ مفضلاتك.</string>
     <string name="google">تابع باستخدام Google</string>

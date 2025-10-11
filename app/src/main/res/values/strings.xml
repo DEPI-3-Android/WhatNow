@@ -5,8 +5,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="con_password">Confirm password</string>
-    <string name="new_user">Do not have an account? <font color="#e21220"><u>Sign up now!</u></font></string>
-    <string name="old_user">Have an account? <font color="#e21220"><u>Login now!</u></font></string>
+    <string name="new_user">Do not have an account? <font color="#6750a4"><u>Sign up now!</u></font></string>
+    <string name="old_user">Have an account? <font color="#6750a4"><u>Login now!</u></font></string>
     <string name="or">OR</string>
     <string name="welcome_back">Welcome back</string>
     <string name="you_have_been_missed">You have been missed!</string>
