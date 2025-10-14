@@ -1,5 +1,6 @@
 package com.acms.whatnow
 
+import android.widget.Button
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -48,6 +49,11 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.main)
+        val btnCheckNews = findViewById<Button>(R.id.btnCheckNews)
+        btnCheckNews.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -62,9 +68,9 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.googleBtn.setOnClickListener {
-            signInWithGoogle()
-        }
+//        binding.googleBtn.setOnClickListener {
+//            signInWithGoogle()
+//        }
 
         binding.notHaveAcc.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -131,6 +137,11 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
             }
+        }
+
+        val checkNewsButton = findViewById<Button>(R.id.btnCheckNews)
+        checkNewsButton.setOnClickListener {
+            startActivity(Intent(this, NewsActivity::class.java))
         }
     }
 
