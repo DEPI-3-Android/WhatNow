@@ -16,16 +16,17 @@
         android:layout_marginTop="60dp"
         android:gravity="top"
         android:text="@string/create_an_account"
+        android:textColor="@color/blue"
         android:textSize="32sp" />
 
-    <!--<TextView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="8dp"
         android:text="@string/join_whatnow_to"
-        android:textSize="18sp" />-->
+        android:textSize="18sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledEmailField"
@@ -37,17 +38,16 @@
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
         app:errorEnabled="true"
-        app:hintEnabled="true">
-        <!--        app:startIconDrawable="@drawable/email"-->
+        app:hintEnabled="true"
+        app:startIconDrawable="@drawable/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/second"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
-        <!--        android:backgroundTint="@color/textField"-->
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -61,16 +61,16 @@
         app:boxCornerRadiusTopStart="12dp"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:hintEnabled="true">
-        <!--        app:startIconDrawable="@drawable/password"-->
+        app:hintEnabled="true"
+        app:startIconDrawable="@drawable/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/second"
             android:hint="@string/password"
             android:inputType="textPassword" />
-        <!--        android:backgroundTint="@color/textField"-->
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -84,16 +84,16 @@
         app:boxCornerRadiusTopStart="12dp"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:hintEnabled="true">
-        <!--        app:startIconDrawable="@drawable/password"-->
+        app:hintEnabled="true"
+        app:startIconDrawable="@drawable/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/conPassET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/second"
             android:hint="@string/con_password"
             android:inputType="textPassword" />
-        <!--        android:backgroundTint="@color/textField"-->
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,16 +133,16 @@
             android:layout_height="1dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:layout_toStartOf="@id/or" />
-        <!--            android:background="@color/red" -->
+            android:layout_toStartOf="@id/or"
+            android:background="@color/blue" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
-            android:layout_toEndOf="@id/or" />
-        <!--            android:background="@color/red" -->
+            android:layout_toEndOf="@id/or"
+            android:background="@color/blue" />
 
     </RelativeLayout>
 
@@ -153,14 +153,14 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="32dp"
 
+        android:backgroundTint="@color/second"
         android:text="@string/google"
+        android:textColor="@color/invert"
         android:textSize="18sp"
         app:cornerRadius="8dp"
+        app:icon="@drawable/google"
         app:iconGravity="textStart"
         app:iconTint="@null" />
-<!--    android:backgroundTint="@color/invert"-->
-<!--    app:icon="@drawable/google"-->
-<!--    android:textColor="@color/background"-->
 
 
 </LinearLayout>

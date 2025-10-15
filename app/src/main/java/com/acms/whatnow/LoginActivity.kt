@@ -9,10 +9,13 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
 import com.acms.whatnow.databinding.ActivityLoginBinding
+import com.acms.whatnow.databinding.ActivitySignUpBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -45,12 +48,24 @@ class LoginActivity : AppCompatActivity() {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+
+        val savedMode = prefs.getInt("mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val savedLang = prefs.getString("lang", "en")
+        val selectedCountry = prefs.getString("CC", "ww")
+
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(savedLang))
+        AppCompatDelegate.setDefaultNightMode(savedMode)
+
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        auth = Firebase.auth
+
         enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.main)
-        val btnCheckNews = findViewById<Button>(R.id.btnCheckNews)
-        btnCheckNews.setOnClickListener {
+
+        binding.checkNewsBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -139,8 +154,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        val checkNewsButton = findViewById<Button>(R.id.btnCheckNews)
-        checkNewsButton.setOnClickListener {
+
+        binding.checkNewsBtn.setOnClickListener {
             startActivity(Intent(this, NewsActivity::class.java))
         }
     }
@@ -168,8 +183,13 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else
-                        Snackbar.make(binding.root, getString(R.string.create_an_account), Toast.LENGTH_SHORT)
+                        Snackbar.make(
+                            binding.root,
+                            getString(R.string.create_an_account),
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
+
                     val user = auth.currentUser
                 } else {
                     Snackbar.make(

@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#FFFFFF</color>
+    <color name="blue">#1877F2</color>
+    <color name="second">#EEF1F4</color>
+    <color name="third">#FFFFFF</color>
+    <color name="error">#C30052</color>
+    <color name="invert">#1C1E21</color>
 </resources>

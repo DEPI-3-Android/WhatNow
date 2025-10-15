@@ -1,7 +1,72 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.WhatNow" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/invert</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="materialButtonStyle">@style/Widget.MyApp.Button</item>
+        <item name="android:textColorHighlight">@color/error</item>
+
+
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorOnSecondary">@color/background</item>
+
+        <item name="colorTertiary">@color/background</item>
+        <item name="colorOnTertiary">@color/background</item>
+
+        <item name="colorSurface">@color/invert</item>
+        <item name="colorOnSurface">@color/invert</item>
+        <item name="colorOnSurfaceVariant">@color/invert</item>
+
+        <item name="colorPrimaryContainer">@color/blue</item>
+        <item name="colorOnPrimaryContainer">@color/background</item>
+
+        <!-- النصوص -->
+        <item name="android:textColor">@color/invert</item>
+        <item name="android:textColorPrimary">@color/invert</item>
+        <item name="android:textColorSecondary">@color/invert</item>
+        <item name="radioButtonStyle">@style/MyRadioButtonStyle</item>
+
+
+        <!-- غصب عن Material3: override text appearances -->
+        <item name="textAppearanceBodyLarge">@style/MyTextAppearance</item>
+        <item name="textAppearanceBodyMedium">@style/MyTextAppearance</item>
+        <item name="textAppearanceBodySmall">@style/MyTextAppearance</item>
+
+        <item name="textAppearanceLabelLarge">@style/MyTextAppearance</item>
+        <item name="textAppearanceLabelMedium">@style/MyTextAppearance</item>
+        <item name="textAppearanceLabelSmall">@style/MyTextAppearance</item>
+        <item name="switchStyle">@style/MySwitchStyle</item>
+
+
     </style>
+
+    <style name="MyTextAppearance" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/invert</item>
+    </style>
+
+    <style name="MyRadioButtonStyle" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:buttonTint">@color/blue</item>
+    </style>
+
+    <style name="MySwitchStyle" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="android:textColor">@color/invert</item>
+    </style>
+
+    <style name="Widget.MyApp.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">12dp</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.WhatNow.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="postSplashScreenTheme">@style/Theme.WhatNow</item>
+    </style>
+
+    <style name="Theme.WhatNow" parent="Base.Theme.WhatNow" />
 </resources>

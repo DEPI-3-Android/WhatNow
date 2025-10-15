@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="12dp"
-    app:cardElevation="5dp"
-    android:foreground="?attr/selectableItemBackground">
+    app:cardElevation="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,56 +18,56 @@
             android:id="@+id/newsImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
             android:background="@drawable/rounded_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- News Title -->
         <TextView
             android:id="@+id/newsTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="headline"
-            android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintStart_toEndOf="@id/newsImage"
-            app:layout_constraintTop_toTopOf="@id/newsImage"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="10dp" />
+            app:layout_constraintStart_toEndOf="@id/newsImage"
+            app:layout_constraintTop_toTopOf="@id/newsImage" />
 
         <!-- News Description -->
         <TextView
             android:id="@+id/newsDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="description"
-            android:textSize="13sp"
-            android:textColor="#555555"
-            android:maxLines="3"
-            android:ellipsize="end"
-            app:layout_constraintStart_toEndOf="@id/newsImage"
-            app:layout_constraintTop_toBottomOf="@id/newsTitle"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="description"
+            android:textColor="#555555"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/newsImage"
+            app:layout_constraintTop_toBottomOf="@id/newsTitle" />
 
         <!-- Source and Date -->
-<!--        <TextView-->
-<!--            android:id="@+id/newsSource"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="CNN - 2h ago"-->
-<!--            android:textColor="#95F321"-->
-<!--            android:textSize="12sp"-->
-<!--            android:layout_marginTop="6dp"-->
-<!--            app:layout_constraintStart_toEndOf="@id/newsImage"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/newsImage"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/newsSource"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="CNN - 2h ago"-->
+        <!--            android:textColor="#95F321"-->
+        <!--            android:textSize="12sp"-->
+        <!--            android:layout_marginTop="6dp"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/newsImage"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/newsImage"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

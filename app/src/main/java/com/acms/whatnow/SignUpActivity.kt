@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
@@ -44,9 +46,20 @@ class SignUpActivity : AppCompatActivity() {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+
+        val savedMode = prefs.getInt("mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val savedLang = prefs.getString("lang", "en")
+        val selectedCountry = prefs.getString("CC", "ww")
+
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(savedLang))
+        AppCompatDelegate.setDefaultNightMode(savedMode)
+
+        super.onCreate(savedInstanceState)
+
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         auth = Firebase.auth
-        super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContentView(binding.main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -76,6 +89,10 @@ class SignUpActivity : AppCompatActivity() {
             if (!text.isNullOrEmpty())
                 binding.filledConPassField.error = null
         }
+        binding.passET.doOnTextChanged { text, _, _, _ ->
+            if (!text.isNullOrEmpty())
+                binding.filledConPassField.error = null
+        }
 
         binding.sinUpBtn.setOnClickListener {
             val email = binding.emailET.text.toString().trim()
@@ -102,7 +119,7 @@ class SignUpActivity : AppCompatActivity() {
                     valid = false
                 }
 
-                pass.length < 8 -> {
+                pass.length < 6 -> {
                     binding.filledPassField.error = getString(R.string.password_long)
                     valid = false
                 }
