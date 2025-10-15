@@ -56,6 +56,17 @@
             app:layout_constraintStart_toEndOf="@id/newsImage"
             app:layout_constraintTop_toBottomOf="@id/newsTitle" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/star_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/cardview_dark_background"
+            android:src="@drawable/star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <!-- Source and Date -->
         <!--        <TextView-->
         <!--            android:id="@+id/newsSource"-->
