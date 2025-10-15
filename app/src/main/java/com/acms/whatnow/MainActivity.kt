@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
-import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
 import com.acms.whatnow.databinding.ActivityMainBinding
 
@@ -23,16 +22,16 @@ class MainActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        binding.main.setOnClickListener {
-            val intent = Intent(this, NewsActivity::class.java)
-            startActivity(intent)
-        }
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        binding.main.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 }

@@ -12,8 +12,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class NewsActivity : AppCompatActivity() {
-    private val apiKey = "0f14c4588914480eae3ef9b3ca684ca4"
+    private val apiKey = BuildConfig.NEWS_API_KEY
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {

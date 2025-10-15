@@ -5,8 +5,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class SplashActivity : ComponentActivity() {
+    public lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
@@ -16,9 +21,18 @@ class SplashActivity : ComponentActivity() {
 
         val splashScreen = installSplashScreen()
 
-        super.onCreate(savedInstanceState)
+        auth = Firebase.auth
 
-        startActivity(Intent(this, SettingsActivity::class.java))
+
+        super.onCreate(savedInstanceState)
+        val intent = if (auth.currentUser == null) {
+            Intent(this, SignUpActivity::class.java)
+        } else {
+            Intent(this, MainActivity::class.java)
+        }
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
         finish()
+
     }
 }

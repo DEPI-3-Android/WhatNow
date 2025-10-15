@@ -4,6 +4,7 @@ import android.widget.Button
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +30,8 @@ import com.google.firebase.auth.auth
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     public lateinit var auth: FirebaseAuth
+    private val defaultWebClientId = BuildConfig.DEFAULT_WEB_CLIENT_ID
+
     private lateinit var googleSignInClient: GoogleSignInClient
     private var launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -52,23 +55,14 @@ class LoginActivity : AppCompatActivity() {
 
         val savedMode = prefs.getInt("mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         val savedLang = prefs.getString("lang", "en")
-        val selectedCountry = prefs.getString("CC", "ww")
 
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(savedLang))
         AppCompatDelegate.setDefaultNightMode(savedMode)
 
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        auth = Firebase.auth
-
-        enableEdgeToEdge()
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.main)
-
-        binding.checkNewsBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -77,15 +71,15 @@ class LoginActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(defaultWebClientId)
             .requestEmail()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-//        binding.googleBtn.setOnClickListener {
-//            signInWithGoogle()
-//        }
+        binding.googleBtn.setOnClickListener {
+            signInWithGoogle()
+        }
 
         binding.notHaveAcc.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -179,9 +173,12 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    if (auth.currentUser!!.isEmailVerified) {
-                        startActivity(Intent(this, MainActivity::class.java))
+                    if (auth.currentUser?.isEmailVerified == true) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                         finish()
+
                     } else
                         Snackbar.make(
                             binding.root,
@@ -211,7 +208,10 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
                     val user = auth.currentUser
                 } else {
                     Snackbar.make(

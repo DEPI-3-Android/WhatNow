@@ -23,7 +23,6 @@
     <string name="verify_email">الرجاء تأكيد بريدك الإلكتروني.</string>
     <string name="login_failed">تعذر تسجيل الدخول: تحقق من البريد الإلكتروني وكلمة المرور.</string>
     <string name="forgot_your_password"><u>هل نسيت كلمة المرور؟</u></string>
-    <string name="default_web_client_id">105566086279-cdaagnhl36oi1pknnstvbd9im50nd39g.apps.googleusercontent.com</string>
     <string name="log_out">تسجيل خروج</string>
     <string name="ww">حول العالم</string>
     <string name="usa">الولايات المتحدة الأمريكية</string>

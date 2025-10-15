@@ -20,6 +20,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isGone
 import com.acms.whatnow.databinding.ActivitySettingsBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
@@ -47,8 +49,9 @@ class SettingsActivity : AppCompatActivity() {
         }
         setupCountrySpinner()
         binding.logOutBtn.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-
+            Firebase.auth.signOut()
+            startActivity(Intent(this, SignUpActivity::class.java))
+            finish()
         }
         binding.theme.setOnClickListener {
             modeSetupDialog(getString(R.string.choose_theme))

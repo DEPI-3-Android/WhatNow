@@ -1,9 +1,22 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.kapt")
 }
+
+// Load API keys safely from local.properties
+val localProperties = Properties()
+val localFile = rootProject.file("local.properties")
+if (localFile.exists())
+    localProperties.load(FileInputStream(localFile))
+val newsApiKey: String = localProperties.getProperty("NEWS_API_KEY", "")
+val defaultWebClientId: String = localProperties.getProperty("DEFAULT_WEB_CLIENT_ID", "")
 
 android {
     namespace = "com.acms.whatnow"
@@ -15,13 +28,17 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "NEWS_API_KEY", "\"$newsApiKey\"")
+        buildConfigField("String", "DEFAULT_WEB_CLIENT_ID", "\"$defaultWebClientId\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
+
+
 
     buildTypes {
         release {

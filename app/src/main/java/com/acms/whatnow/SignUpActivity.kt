@@ -3,6 +3,7 @@ package com.acms.whatnow
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -23,10 +24,12 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import kotlin.math.log
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
+    private val defaultWebClientId = BuildConfig.DEFAULT_WEB_CLIENT_ID
     private lateinit var googleSignInClient: GoogleSignInClient
     private var launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -50,26 +53,26 @@ class SignUpActivity : AppCompatActivity() {
 
         val savedMode = prefs.getInt("mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         val savedLang = prefs.getString("lang", "en")
-        val selectedCountry = prefs.getString("CC", "ww")
 
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(savedLang))
         AppCompatDelegate.setDefaultNightMode(savedMode)
 
         super.onCreate(savedInstanceState)
-
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         auth = Firebase.auth
 
+        setContentView(binding.root)
         enableEdgeToEdge()
-        setContentView(binding.main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Log.d("DEBUG", "WEB_CLIENT_ID = ${BuildConfig.DEFAULT_WEB_CLIENT_ID}")
+
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(defaultWebClientId)
             .requestEmail()
             .build()
 
@@ -91,9 +94,8 @@ class SignUpActivity : AppCompatActivity() {
         }
         binding.passET.doOnTextChanged { text, _, _, _ ->
             if (!text.isNullOrEmpty())
-                binding.filledConPassField.error = null
+                binding.filledPassField.error = null
         }
-
         binding.sinUpBtn.setOnClickListener {
             val email = binding.emailET.text.toString().trim()
             val pass = binding.passET.text.toString().trim()
@@ -170,7 +172,7 @@ class SignUpActivity : AppCompatActivity() {
                     Snackbar.make(
                         binding.root,
                         getString(R.string.check_your_email),
-                        Toast.LENGTH_SHORT
+                        Snackbar.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -187,7 +189,10 @@ class SignUpActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
                     val user = auth.currentUser
                 } else {
                     Snackbar.make(

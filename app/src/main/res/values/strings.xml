@@ -23,7 +23,6 @@
     <string name="verify_email">Please verify your email</string>
     <string name="login_failed">Login failed: please check your email and password.</string>
     <string name="forgot_your_password"><u>Forgot your password?</u></string>
-    <string name="default_web_client_id">105566086279-cdaagnhl36oi1pknnstvbd9im50nd39g.apps.googleusercontent.com</string>
     <string name="log_out">Log out</string>
     <string name="english" translatable="false">English</string>
     <string name="arabic" translatable="false">العربية</string>
