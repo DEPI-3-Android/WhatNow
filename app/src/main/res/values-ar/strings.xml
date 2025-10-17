@@ -38,6 +38,21 @@
     <string name="theme">السمة</string>
     <string name="language">اللغة</string>
     <string name="choose_lang">اختيار اللغة</string>
+    <string name="top_menu">اخبار اليوم</string>
+    <string name="categories">الفئات</string>
+    <string name="sports">رياضات</string>
+    <string name="health">صحة</string>
+    <string name="technology">تقنية</string>
+    <string name="science">علوم</string>
+    <string name="business">اعمال تجارية</string>
+    <string name="entertainment">ترفيه</string>
+    <string name="general">عام</string>
+    <string name="curr_region">المنطقة الحالية</string>
+    <string name="short_name">الأسم المختصر</string>
+    <string name="check_news">تطلع على الأخبار</string>
+    <string name="top_news">اهم الأخبار</string>
+    <string name="settings">الأعدادات</string>
+    <string name="logout">تسجيل الخروج</string>
 
     <string-array name="countries_array">
         <item>@string/ww</item>

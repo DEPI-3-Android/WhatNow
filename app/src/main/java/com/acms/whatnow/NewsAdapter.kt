@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.acms.whatnow.models.Article
@@ -24,6 +25,8 @@ class NewsAdapter(
         val description: TextView = view.findViewById(R.id.articleDescription)
         val image: ImageView = view.findViewById(R.id.articleImage)
         val starFab: FloatingActionButton = view.findViewById(R.id.starFab)
+        val shareFab: FloatingActionButton = view.findViewById(R.id.share_fab)
+
         val cardView: androidx.cardview.widget.CardView = view.findViewById(R.id.cardView)
     }
 
@@ -55,23 +58,31 @@ class NewsAdapter(
             holder.image.setImageResource(R.drawable.ic_news)
         }
 
-        // Set star state using tint
+        //Favorites part
         updateStarAppearance(holder.starFab, article.favorite)
 
-        // Favorite toggle
         holder.starFab.setOnClickListener {
+            // Flip the favorite state
             article.favorite = !article.favorite
-            val docId = article.url?.hashCode()?.toString() ?: db.collection("favorites").document().id
-            val docRef = db.collection("favorites").document(docId)
+
+            val docId = article.url?.hashCode()?.toString()
+                ?: db.collection("favorites").document().id
+            val favoritesRef = db.collection("favorites").document(docId)
 
             if (article.favorite) {
-                docRef.set(article)
+
+                val favoriteData = mapOf(
+                    "title" to article.title,
+                    "url" to article.url
+                )
+                favoritesRef.set(favoriteData)
                 updateStarAppearance(holder.starFab, true)
             } else {
-                docRef.delete()
+                favoritesRef.delete()
                 updateStarAppearance(holder.starFab, false)
             }
         }
+
 
         // ADDED: Click listener for the entire card to open news article
         holder.itemView.setOnClickListener {
@@ -80,19 +91,33 @@ class NewsAdapter(
                 holder.itemView.context.startActivity(intent)
             }
         }
+
+        holder.shareFab.setOnClickListener {
+            ShareCompat
+                .IntentBuilder(holder.itemView.context)
+                .setType("text/plain")
+                .setChooserTitle("Share article with:")
+                .setText(article.url)
+                .startChooser()
+
+
+        }
     }
 
     private fun updateStarAppearance(starFab: FloatingActionButton, isFavorite: Boolean) {
+        val context = starFab.context
+
         if (isFavorite) {
-            // Filled state - use yellow tint
-            starFab.setColorFilter(ContextCompat.getColor(starFab.context, android.R.color.holo_orange_dark))
-            starFab.backgroundTintList = ContextCompat.getColorStateList(starFab.context, android.R.color.holo_orange_light)
+            // Highlighted star (favorite)
+            starFab.setColorFilter(ContextCompat.getColor(context, android.R.color.holo_orange_dark))
+            starFab.backgroundTintList = ContextCompat.getColorStateList(context, android.R.color.holo_orange_light)
         } else {
-            // Outline state - use dark tint
-            starFab.setColorFilter(ContextCompat.getColor(starFab.context, android.R.color.black))
-            starFab.backgroundTintList = ContextCompat.getColorStateList(starFab.context, android.R.color.darker_gray)
+            // Normal star (not favorite)
+            starFab.setColorFilter(ContextCompat.getColor(context, android.R.color.black))
+            starFab.backgroundTintList = ContextCompat.getColorStateList(context, android.R.color.darker_gray)
         }
     }
+
 
     override fun getItemCount(): Int = articles.size
 }

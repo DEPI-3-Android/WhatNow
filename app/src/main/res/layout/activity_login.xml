@@ -155,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="48dp"
-        android:text="check news"
+        android:text="@string/check_news"
         android:textSize="18sp" />
 
 

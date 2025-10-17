@@ -1,11 +1,11 @@
-package com.acms.whatnow.models
+package com.acms.whatnow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.acms.whatnow.NewsAdapter
-import com.acms.whatnow.R
+import com.acms.whatnow.models.Article
+import com.acms.whatnow.models.Source
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FavoriteActivity : AppCompatActivity() {
@@ -28,8 +28,8 @@ class FavoriteActivity : AppCompatActivity() {
                     val article = Article(
                         source = Source(null, "Firebase"),
                         title = doc.getString("title"),
-                        description = doc.getString("description"),
-                        urlToImage = doc.getString("urlToImage"),
+                        description = null,
+                        urlToImage = null,
                         url = doc.getString("url"),
                         favorite = true
                     )

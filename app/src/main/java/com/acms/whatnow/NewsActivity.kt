@@ -35,7 +35,10 @@ class NewsActivity : AppCompatActivity() {
         val api = ApiClient.instance.create(NewsApiService::class.java)
         api.getTopHeadlines(category, country, 20, apiKey)
             .enqueue(object : Callback<NewsResponse> {
-                override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                override fun onResponse(
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
+                ) {
                     if (response.isSuccessful) {
                         val newsList = response.body()?.articles ?: emptyList()
 
@@ -48,29 +51,64 @@ class NewsActivity : AppCompatActivity() {
                             Log.d("NewsActivity", "  Title: ${article.title?.take(50)}...")
                             Log.d("NewsActivity", "  Image URL: ${article.urlToImage}")
                             Log.d("NewsActivity", "  URL: ${article.url}")
-                            Log.d("NewsActivity", "  Has image: ${!article.urlToImage.isNullOrEmpty()}")
+                            Log.d(
+                                "NewsActivity",
+                                "  Has image: ${!article.urlToImage.isNullOrEmpty()}"
+                            )
 
                             if (!article.urlToImage.isNullOrEmpty()) {
-                                Log.d("NewsActivity", "  Image URL valid: ${article.urlToImage.startsWith("http")}")
+                                Log.d(
+                                    "NewsActivity",
+                                    "  Image URL valid: ${article.urlToImage.startsWith("http")}"
+                                )
                             }
                         }
 
                         if (newsList.isEmpty()) {
-                            Toast.makeText(this@NewsActivity, "No news available", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@NewsActivity,
+                                "No news available",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                         val db = FirebaseFirestore.getInstance()
                         val adapter = NewsAdapter(newsList, db)
                         recyclerView.adapter = adapter
 
+                        // favorites part
+                        db.collection("favorites").get()
+                            .addOnSuccessListener { it ->
+                                // Get all favorite article titles from Firestore
+                                val favoriteTitles =
+                                    it.documents.mapNotNull { it.getString("title") }
+
+                                newsList.forEach { article ->
+                                    article.favorite = favoriteTitles.contains(article.title)
+                                }
+
+                                recyclerView.adapter = NewsAdapter(newsList, db)
+                            }
+                            .addOnFailureListener { error ->
+                                Log.e("NewsActivity", "Couldn't load favorites: ${error.message}")
+                            }
+
                     } else {
-                        Toast.makeText(this@NewsActivity, "API Error ${response.code()}", Toast.LENGTH_SHORT).show()
-                        Log.e("NewsActivity", "API Error: ${response.code()} - ${response.message()}")
+                        Toast.makeText(
+                            this@NewsActivity,
+                            "API Error ${response.code()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.e(
+                            "NewsActivity",
+                            "API Error: ${response.code()} - ${response.message()}"
+                        )
                     }
                 }
 
                 override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                    Toast.makeText(this@NewsActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@NewsActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
+                        .show()
                     Log.e("NewsActivity", "API Call failed: ${t.message}")
                 }
             })

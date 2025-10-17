@@ -15,7 +15,7 @@
         android:theme="@style/Theme.WhatNow">
 
         <activity
-            android:name=".models.FavoriteActivity"
+            android:name=".FavoriteActivity"
             android:exported="false" />
 
         <activity

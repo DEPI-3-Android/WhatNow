@@ -3,9 +3,15 @@ package com.acms.whatnow
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.PopupMenu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.acms.whatnow.databinding.ActivityCategoryBinding
@@ -35,16 +41,21 @@ class CategoryActivity : AppCompatActivity() {
             insets
         }
 
-        // ---- Toolbar with back button ----
-        setSupportActionBar(binding.categoryToolbar)
-        binding.categoryToolbar.setNavigationOnClickListener {
-            finish() // Go back to previous activity (LoginActivity if coming from there)
-        }
+//        // ---- Toolbar with back button ----
+//        setSupportActionBar(binding.categoryToolbar)
+//        binding.categoryToolbar.setNavigationOnClickListener {
+//            finish() // Go back to previous activity (LoginActivity if coming from there)
+//        }
+//
+//        // ---- Settings button ----
+//        binding.settingsButton.setOnClickListener {
+//            startActivity(Intent(this, SettingsActivity::class.java))
+//        }
 
-        // ---- Settings button ----
-        binding.settingsButton.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
+        // load toolbar
+        val toolbar: Toolbar = findViewById(R.id.topmenu)
+        setSupportActionBar(toolbar)
+
 
         // ---- Category buttons ----
         binding.sportsButton.setOnClickListener { openCategory("sports") }
@@ -54,6 +65,66 @@ class CategoryActivity : AppCompatActivity() {
         binding.businessButton.setOnClickListener { openCategory("business") }
         binding.entertainmentButton.setOnClickListener { openCategory("entertainment") }
         binding.generalButton.setOnClickListener { openCategory("general") }
+
+
+    }
+
+
+    // load toolbar menu first
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
+
+    // handling pressed icons in toolbar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+
+            // favorite list icon handler
+            R.id.action_favorite -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            // when more_menu icon pressed--> popup_menu appears
+            R.id.action_more -> {
+                val moreItemView = findViewById<Toolbar>(R.id.topmenu)
+                val popupMenu = PopupMenu(this, moreItemView)
+
+
+                popupMenu.menuInflater.inflate(R.menu.more_menu, popupMenu.menu)
+
+                // popup menu handler
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+
+                        R.id.action_setting -> {
+                            val intent = Intent(this, SettingsActivity::class.java)
+                            startActivity(intent)
+                            true
+                        }
+
+                        R.id.action_logout -> {
+                            val intent = Intent(this, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+
+                // show popup menu
+                popupMenu.show()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+
+
     }
 
     override fun onResume() {
