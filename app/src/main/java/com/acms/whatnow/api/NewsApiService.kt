@@ -6,12 +6,22 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NewsApiService {
+
     @GET("top-headlines")
-    fun getNewsByCountry(
-        @Query("country") country: String = "us",
+    fun getTopHeadlines(
         @Query("category") category: String = "general",
-        @Query("pageSize") pageSize: Int = 20,
-        @Query("apiKey") apiKey: String = "0f14c4588914480ae3ef9b3ca684ca4"
+        @Query("country") country: String = "us",
+        @Query("max") pageSize: Int = 20,
+        @Query("token") apiKey: String,
+        @Query("in") content: String = "title,description,image"
     ): Call<NewsResponse>
 
+    @GET("search")
+    fun getNewsWithImages(
+        @Query("q") query: String = "",
+        @Query("country") country: String = "us",
+        @Query("max") pageSize: Int = 20,
+        @Query("token") apiKey: String,
+        @Query("image") includeImages: String = "required"
+    ): Call<NewsResponse>
 }

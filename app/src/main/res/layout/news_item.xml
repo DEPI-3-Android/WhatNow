@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     app:cardCornerRadius="12dp"
     app:cardElevation="5dp">
 
@@ -14,60 +18,59 @@
         android:padding="10dp">
 
         <!-- News Image -->
-        <ImageView
-            android:id="@+id/newsImage"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/articleImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/rounded_image"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <!-- News Title -->
         <TextView
-            android:id="@+id/newsTitle"
+            android:id="@+id/articleTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="headline"
+            android:text="Headline"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/newsImage"
-            app:layout_constraintTop_toTopOf="@id/newsImage" />
+            app:layout_constraintStart_toEndOf="@id/articleImage"
+            app:layout_constraintTop_toTopOf="@id/articleImage"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- News Description -->
         <TextView
-            android:id="@+id/newsDescription"
+            android:id="@+id/articleDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="description"
+            android:text="Description"
             android:textColor="#555555"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/newsImage"
-            app:layout_constraintTop_toBottomOf="@id/newsTitle" />
+            app:layout_constraintStart_toEndOf="@id/articleImage"
+            app:layout_constraintTop_toBottomOf="@id/articleTitle"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Source and Date -->
-        <!--        <TextView-->
-        <!--            android:id="@+id/newsSource"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="CNN - 2h ago"-->
-        <!--            android:textColor="#95F321"-->
-        <!--            android:textSize="12sp"-->
-        <!--            android:layout_marginTop="6dp"-->
-        <!--            app:layout_constraintStart_toEndOf="@id/newsImage"-->
-        <!--            app:layout_constraintBottom_toBottomOf="@id/newsImage"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <!-- Favorite FAB -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/starFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Favorite"
+            android:backgroundTint="@color/cardview_dark_background"
+            android:src="@drawable/star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

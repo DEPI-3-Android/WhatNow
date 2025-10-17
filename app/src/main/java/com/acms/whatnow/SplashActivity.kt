@@ -28,7 +28,7 @@ class SplashActivity : ComponentActivity() {
         val intent = if (auth.currentUser == null) {
             Intent(this, SignUpActivity::class.java)
         } else {
-            Intent(this, MainActivity::class.java)
+            Intent(this, CategoryActivity::class.java)
         }
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

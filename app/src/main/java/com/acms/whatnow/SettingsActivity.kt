@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -30,10 +31,9 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         prefs = getSharedPreferences("settings", MODE_PRIVATE)
-
         val savedMode = prefs.getInt("mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         val savedLang = prefs.getString("lang", "en")
-        selectedCountry = prefs.getString("CC", "ww")
+        selectedCountry = prefs.getString("countryCode", "ww")
 
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(savedLang))
         AppCompatDelegate.setDefaultNightMode(savedMode)
@@ -61,68 +61,59 @@ class SettingsActivity : AppCompatActivity() {
         }
 
     }
-
-    fun setupCountrySpinner() {
-        // Create an ArrayAdapter using the string array and a default spinner layout.
-        ArrayAdapter.createFromResource(
+    private fun setupCountrySpinner() {
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        val countriesList = ArrayAdapter.createFromResource(
             this,
             R.array.countries_array,
             android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.countriesSpinner.adapter = adapter
-
-            val savedCode = prefs.getString("CC", "ww")
-            val savedCountryName = when (savedCode) {
-                "us" -> getString(R.string.usa)
-                "de" -> getString(R.string.de)
-                "it" -> getString(R.string.it)
-                "fr" -> getString(R.string.fr)
-                "gb" -> getString(R.string.en)
-                "ru" -> getString(R.string.ru)
-                else -> getString(R.string.ww)
-            }
-
-            val position = adapter.getPosition(savedCountryName)
-            if (position >= 0) binding.countriesSpinner.setSelection(position)
+        ).also { it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
+        // Apply the adapter to the spinner
+        binding.countriesSpinner.adapter = countriesList
+        //------------------------------------------------------
+        val savedCode = prefs.getString("countryCode" , "ww")
+        // Preventing the onItemSelected listener from auto selection when the activity created
+        // Getting the position of the saved country in the adapter
+        val initialPosition = countriesList.getPosition(savedCode)
+        if (initialPosition >= 0) {
+            binding.countriesSpinner.setSelection(initialPosition , false)
         }
-        var isFirstSelection = true
-        binding.countriesSpinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-
-                    if (isFirstSelection) {
-                        isFirstSelection = false
-                        return
-                    }
-
-                    val selectedText = parent?.getItemAtPosition(position).toString()
-                    selectedCountry = when (selectedText) {
-                        getString(R.string.usa) -> "us"
-                        getString(R.string.de) -> "de"
-                        getString(R.string.it) -> "it"
-                        getString(R.string.fr) -> "fr"
-                        getString(R.string.en) -> "gb"
-                        getString(R.string.ru) -> "ru"
-                        else -> "ww"
-                    }
-                    val current = prefs.getString("CC", "ww")
-                    if (current != selectedCountry) {
-                        prefs.edit().putString("CC", selectedCountry).apply()
-                    }
-
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
+        val countryName = when (savedCode) {
+            "us" -> getString(R.string.usa)
+            "de" -> getString(R.string.de)
+            "it" -> getString(R.string.it)
+            "fr" -> getString(R.string.fr)
+            "gb" -> getString(R.string.en)
+            "ru" -> getString(R.string.ru)
+            else -> getString(R.string.ww)
+        }
+        //------------------------------------------------------
+        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCountry = parent?.getItemAtPosition(position).toString()
+                if (savedCode != selectedCountry) {
+                    // Getting a reference to the shared preferences
+                    val prefs = getSharedPreferences("NewRegion" , MODE_PRIVATE)
+                    // Get the editor to modify the preferences
+                    val editor = prefs.edit()
+                    // Save the country using key-value pair
+                    editor.putString("countryCode" , selectedCountry)
+                    // Saving changes asynchronously
+                    editor.apply()
+                    // Toast to confirm your selection
+                    Toast.makeText(this@SettingsActivity , "Switched to $selectedCountry" , Toast.LENGTH_SHORT).show()
                 }
             }
-    }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
 
+            }
+        }
+    }
     fun langSetupDialog(title: String) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

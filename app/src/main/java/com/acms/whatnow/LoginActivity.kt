@@ -1,10 +1,8 @@
 package com.acms.whatnow
 
-import android.widget.Button
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -16,10 +14,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
 import com.acms.whatnow.databinding.ActivityLoginBinding
-import com.acms.whatnow.databinding.ActivitySignUpBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
@@ -30,7 +26,7 @@ import com.google.firebase.auth.auth
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     public lateinit var auth: FirebaseAuth
-    private val defaultWebClientId = BuildConfig.DEFAULT_WEB_CLIENT_ID
+    //private val defaultWebClientId = BuildConfig.DEFAULT_WEB_CLIENT_ID
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private var launcher =
@@ -70,12 +66,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         auth = Firebase.auth
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        /*val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(defaultWebClientId)
             .requestEmail()
-            .build()
+            .build()*/
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+       // googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         binding.googleBtn.setOnClickListener {
             signInWithGoogle()
@@ -150,7 +146,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.checkNewsBtn.setOnClickListener {
-            startActivity(Intent(this, NewsActivity::class.java))
+            startActivity(Intent(this, CategoryActivity::class.java))
         }
     }
 
@@ -159,7 +155,7 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             if (currentUser.isEmailVerified) {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, CategoryActivity::class.java))
                 finish()
             } else {
                 Snackbar.make(binding.main, getString(R.string.verify_email), Snackbar.LENGTH_LONG)
@@ -174,7 +170,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     if (auth.currentUser?.isEmailVerified == true) {
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, CategoryActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()
@@ -208,7 +204,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, CategoryActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
