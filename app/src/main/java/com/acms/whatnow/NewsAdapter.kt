@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.acms.whatnow.models.Article
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -26,7 +27,6 @@ class NewsAdapter(
         val image: ImageView = view.findViewById(R.id.articleImage)
         val starFab: FloatingActionButton = view.findViewById(R.id.starFab)
         val shareFab: FloatingActionButton = view.findViewById(R.id.share_fab)
-
         val cardView: androidx.cardview.widget.CardView = view.findViewById(R.id.cardView)
     }
 
@@ -39,30 +39,24 @@ class NewsAdapter(
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val article = articles[position]
 
-        // Set title
         holder.title.text = article.title ?: "No Title"
-
-        // Set description
         holder.description.text = article.description ?: "No description available"
 
-        // Load image safely using Glide - FIXED: Proper Glide implementation
         val imageUrl = article.urlToImage
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_news)
                 .error(R.drawable.ic_news)
+                .transition(DrawableTransitionOptions.withCrossFade(1000))
                 .into(holder.image)
         } else {
-            // If no image URL, set placeholder
             holder.image.setImageResource(R.drawable.ic_news)
         }
 
-        //Favorites part
         updateStarAppearance(holder.starFab, article.favorite)
 
         holder.starFab.setOnClickListener {
-            // Flip the favorite state
             article.favorite = !article.favorite
 
             val docId = article.url?.hashCode()?.toString()
@@ -70,10 +64,10 @@ class NewsAdapter(
             val favoritesRef = db.collection("favorites").document(docId)
 
             if (article.favorite) {
-
                 val favoriteData = mapOf(
                     "title" to article.title,
-                    "url" to article.url
+                    "url" to article.url,
+                    "image" to article.urlToImage
                 )
                 favoritesRef.set(favoriteData)
                 updateStarAppearance(holder.starFab, true)
@@ -83,8 +77,6 @@ class NewsAdapter(
             }
         }
 
-
-        // ADDED: Click listener for the entire card to open news article
         holder.itemView.setOnClickListener {
             article.url?.let { url ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -93,31 +85,26 @@ class NewsAdapter(
         }
 
         holder.shareFab.setOnClickListener {
-            ShareCompat
-                .IntentBuilder(holder.itemView.context)
+            ShareCompat.IntentBuilder(holder.itemView.context)
                 .setType("text/plain")
                 .setChooserTitle("Share article with:")
                 .setText(article.url)
                 .startChooser()
-
-
         }
     }
 
     private fun updateStarAppearance(starFab: FloatingActionButton, isFavorite: Boolean) {
         val context = starFab.context
-
         if (isFavorite) {
-            // Highlighted star (favorite)
             starFab.setColorFilter(ContextCompat.getColor(context, android.R.color.holo_orange_dark))
-            starFab.backgroundTintList = ContextCompat.getColorStateList(context, android.R.color.holo_orange_light)
+            starFab.backgroundTintList =
+                ContextCompat.getColorStateList(context, android.R.color.holo_orange_light)
         } else {
-            // Normal star (not favorite)
             starFab.setColorFilter(ContextCompat.getColor(context, android.R.color.black))
-            starFab.backgroundTintList = ContextCompat.getColorStateList(context, android.R.color.darker_gray)
+            starFab.backgroundTintList =
+                ContextCompat.getColorStateList(context, android.R.color.darker_gray)
         }
     }
-
 
     override fun getItemCount(): Int = articles.size
 }

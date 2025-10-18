@@ -39,7 +39,8 @@
         app:boxCornerRadiusTopStart="12dp"
         app:errorEnabled="true"
         app:hintEnabled="true"
-        app:startIconDrawable="@drawable/email">
+        app:startIconDrawable="@drawable/email"
+        android:textColor="@color/textPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailET"
@@ -47,7 +48,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/second"
             android:hint="@string/email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/textPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,7 +64,8 @@
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
         app:hintEnabled="true"
-        app:startIconDrawable="@drawable/password">
+        app:startIconDrawable="@drawable/password"
+        android:textColor="@color/textPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passET"
@@ -70,7 +73,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/second"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/textPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,7 +89,8 @@
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
         app:hintEnabled="true"
-        app:startIconDrawable="@drawable/password">
+        app:startIconDrawable="@drawable/password"
+        android:textColor="@color/textPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/conPassET"
@@ -93,7 +98,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/second"
             android:hint="@string/con_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/textPrimary"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

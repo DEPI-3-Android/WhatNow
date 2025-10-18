@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8F9FA">
+    android:background="?android:attr/colorBackground">
 
     <TextView
         android:id="@+id/newsTitle"
@@ -13,11 +13,12 @@
         android:text="@string/top_news"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#000"
+        android:textColor="?attr/colorOnBackground"
         android:padding="16dp"
         android:gravity="center"
-        android:background="#FFFFFF"
+        android:background="@color/top_bar_background"
         android:elevation="4dp" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -32,7 +33,8 @@
         android:id="@+id/emptyView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No articles found."
+        android:text="@string/no_articles"
+        android:textColor="?attr/colorOnBackground"
         android:gravity="center"
         android:visibility="gone"
         android:padding="12dp" />

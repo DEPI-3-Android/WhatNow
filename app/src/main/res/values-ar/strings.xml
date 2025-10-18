@@ -27,7 +27,6 @@
     <string name="ww">حول العالم</string>
     <string name="usa">الولايات المتحدة الأمريكية</string>
     <string name="de">المانبا</string>
-    <string name="sp">اسبانيا</string>
     <string name="it">ايطاليا</string>
     <string name="fr">فرنسا</string>
     <string name="en">انجلترا</string>
@@ -49,16 +48,23 @@
     <string name="general">عام</string>
     <string name="curr_region">المنطقة الحالية</string>
     <string name="short_name">الأسم المختصر</string>
-    <string name="check_news">تطلع على الأخبار</string>
+    <string name="check_news">تطلع على اخر الأخبار</string>
+    <string name="headline">عنوان</string>
     <string name="top_news">اهم الأخبار</string>
     <string name="settings">الأعدادات</string>
+    <string name="share"> مشاركة </string>
+    <string name="description"> وصف </string>
+    <string name="article_title"> عنوان المقال </string>
+    <string name="favorite"> مفضل </string>
+    <string name="switched_country"> %s تم التبديل ل</string>
     <string name="logout">تسجيل الخروج</string>
+    <string name="no_articles"> لم يعثر على أي مقالات </string>
+
 
     <string-array name="countries_array">
         <item>@string/ww</item>
         <item>@string/usa</item>
         <item>@string/de</item>
-        <item>@string/sp</item>
         <item>@string/it</item>
         <item>@string/fr</item>
         <item>@string/en</item>
