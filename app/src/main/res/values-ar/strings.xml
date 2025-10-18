@@ -52,6 +52,10 @@
     <string name="check_news">تطلع على الأخبار</string>
     <string name="top_news">اهم الأخبار</string>
     <string name="settings">الأعدادات</string>
+    <string name="share"> مشاركة </string>
+    <string name="description"> وصف </string>
+    <string name="article_title"> عنوان المقال </string>
+    <string name="favorite"> مفضل </string>
     <string name="logout">تسجيل الخروج</string>
 
     <string-array name="countries_array">
