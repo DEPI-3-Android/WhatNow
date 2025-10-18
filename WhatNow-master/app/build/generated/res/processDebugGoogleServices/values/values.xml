@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">101018329259</string>
+    <string name="google_api_key" translatable="false">AIzaSyDdIM_5M6IkVi_feuTG_2tXGCXyBYDjcRg</string>
+    <string name="google_app_id" translatable="false">1:101018329259:android:610ead61c0638a428417ee</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDdIM_5M6IkVi_feuTG_2tXGCXyBYDjcRg</string>
+    <string name="google_storage_bucket" translatable="false">whatnow-40239.firebasestorage.app</string>
+    <string name="project_id" translatable="false">whatnow-40239</string>
+</resources>

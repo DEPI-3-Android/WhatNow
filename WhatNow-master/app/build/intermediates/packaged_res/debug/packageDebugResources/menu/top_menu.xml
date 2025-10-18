@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_favorite"
+        android:title="Favorites"
+        android:icon="@drawable/star_24"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_more"
+        android:title="More"
+        android:icon="@drawable/more_vert"
+        app:showAsAction="always" />
+
+</menu>

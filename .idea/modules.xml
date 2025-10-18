@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WhatNow-master.iml" filepath="$PROJECT_DIR$/.idea/WhatNow-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WhatNow.iml" filepath="$PROJECT_DIR$/.idea/modules/WhatNow.iml" />
     </modules>
   </component>
 </project>

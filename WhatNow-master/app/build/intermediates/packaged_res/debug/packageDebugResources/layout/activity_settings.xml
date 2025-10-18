@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SettingsActivity">
+
+    <!--<ImageView
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        tools:src="@tools:sample/avatars"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/lang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:padding="0dp"
+        android:text="@string/language"
+        android:textColor="@color/invert"
+        android:textSize="20sp"
+        app:icon="@drawable/language"
+        app:iconGravity="textStart"
+        app:iconSize="32dp"
+        app:iconTint="@color/invert"
+        app:layout_constraintBottom_toTopOf="@id/theme" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:padding="0dp"
+        android:text="@string/theme"
+        android:textColor="@color/invert"
+        android:textSize="20sp"
+        app:icon="@drawable/theme"
+        app:iconGravity="textStart"
+        app:iconSize="32dp"
+        app:iconTint="@color/invert"
+        app:layout_constraintBottom_toTopOf="@id/region" />
+
+    <Spinner
+        android:id="@+id/countries_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/region"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/region"
+        app:layout_constraintTop_toTopOf="@id/region" />
+
+
+    <TextView
+        android:id="@+id/region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/choose_region"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/countries_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logOutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="48dp"
+        android:text="@string/log_out"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

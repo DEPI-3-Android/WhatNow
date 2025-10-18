@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoryActivity">
+
+    <!-- <com.google.android.material.appbar.MaterialToolbar
+         android:id="@+id/categoryToolbar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:title="Select Category"
+         android:titleTextColor="#FFFFFF"
+         app:navigationIcon="@drawable/ic_arrow_back"
+         app:layout_constraintTop_toTopOf="parent" /> -->
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topmenu"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/top_menu"
+        app:title="@string/top_menu"
+        app:titleTextColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/open_sans_extrabold"
+        android:gravity="center_horizontal"
+        android:text="@string/categories"
+        android:textSize="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <!--<Button
+        android:id="@+id/settingsButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FF5722"
+        android:text="SETTINGS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+        -->
+
+    <Button
+        android:id="@+id/sportsButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="#0068AD"
+        android:text="@string/sports"
+        app:layout_constraintEnd_toStartOf="@id/healthButton"
+        app:layout_constraintStart_toStartOf="@id/categories"
+        app:layout_constraintTop_toBottomOf="@+id/categories"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/healthButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#1FAD00"
+        android:text="@string/health"
+        app:layout_constraintEnd_toEndOf="@id/categories"
+        app:layout_constraintStart_toEndOf="@id/sportsButton"
+        app:layout_constraintTop_toBottomOf="@+id/categories"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/technologyButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#D62806"
+        android:text="@string/technology"
+        app:layout_constraintEnd_toEndOf="@id/sportsButton"
+        app:layout_constraintStart_toStartOf="@id/sportsButton"
+        app:layout_constraintTop_toBottomOf="@+id/sportsButton"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/scienceButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#7000AD"
+        android:text="@string/science"
+        app:layout_constraintEnd_toEndOf="@id/healthButton"
+        app:layout_constraintStart_toStartOf="@id/healthButton"
+        app:layout_constraintTop_toBottomOf="@+id/healthButton"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/businessButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#14DB99"
+        android:text="@string/business"
+        app:layout_constraintEnd_toEndOf="@id/technologyButton"
+        app:layout_constraintStart_toStartOf="@id/technologyButton"
+        app:layout_constraintTop_toBottomOf="@+id/technologyButton"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/entertainmentButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#DB9714"
+        android:text="@string/entertainment"
+        app:layout_constraintEnd_toEndOf="@id/scienceButton"
+        app:layout_constraintStart_toStartOf="@id/scienceButton"
+        app:layout_constraintTop_toBottomOf="@+id/scienceButton"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/generalButton"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#000"
+        android:text="@string/general"
+        app:layout_constraintEnd_toEndOf="@id/entertainmentButton"
+        app:layout_constraintStart_toStartOf="@id/businessButton"
+        app:layout_constraintTop_toBottomOf="@+id/businessButton"
+        tools:ignore="MissingConstraints" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/showCountryName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="150dp"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/generalButton"-->
+<!--        app:layout_constraintStart_toStartOf="@id/generalButton"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:text="@string/curr_region" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/showSelectedCountryCode"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="150dp"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/showCountryName"-->
+<!--        app:layout_constraintStart_toStartOf="@id/showCountryName"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/showCountryName"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:text="@string/short_name" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
