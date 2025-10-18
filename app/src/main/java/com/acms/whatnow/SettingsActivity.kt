@@ -2,6 +2,7 @@ package com.acms.whatnow
 
 import android.app.Dialog
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -15,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -112,6 +114,25 @@ class SettingsActivity : AppCompatActivity() {
         val enRg: RadioButton = dialog.findViewById(R.id.first_rb)
         val gone: RadioButton = dialog.findViewById(R.id.third_rb)
 
+        val sdRg: RadioButton = dialog.findViewById(R.id.first_rb)
+        val dRg: RadioButton = dialog.findViewById(R.id.second_rb)
+        val lRg: RadioButton = dialog.findViewById(R.id.third_rb)
+
+        val states = arrayOf(
+            intArrayOf(android.R.attr.state_checked),   // checked
+            intArrayOf(-android.R.attr.state_checked)   // unchecked
+        )
+        val colors = intArrayOf(
+            ContextCompat.getColor(this, R.color.blue),   // لون محدد لما يكون checked
+            ContextCompat.getColor(this, R.color.invert)    // لون لما يكون unchecked
+        )
+        val colorStateList = ColorStateList(states, colors)
+
+        sdRg.buttonTintList = colorStateList
+        dRg.buttonTintList = colorStateList
+        lRg.buttonTintList = colorStateList
+
+
         arRg.text = getString(R.string.arabic)
         enRg.text = getString(R.string.english)
         gone.isGone = true
@@ -161,6 +182,20 @@ class SettingsActivity : AppCompatActivity() {
         val sdRg: RadioButton = dialog.findViewById(R.id.first_rb)
         val dRg: RadioButton = dialog.findViewById(R.id.second_rb)
         val lRg: RadioButton = dialog.findViewById(R.id.third_rb)
+
+        val states = arrayOf(
+            intArrayOf(android.R.attr.state_checked),   // checked
+            intArrayOf(-android.R.attr.state_checked)   // unchecked
+        )
+        val colors = intArrayOf(
+            ContextCompat.getColor(this, R.color.blue),   // لون محدد لما يكون checked
+            ContextCompat.getColor(this, R.color.invert)    // لون لما يكون unchecked
+        )
+        val colorStateList = ColorStateList(states, colors)
+
+        sdRg.buttonTintList = colorStateList
+        dRg.buttonTintList = colorStateList
+        lRg.buttonTintList = colorStateList
 
         val okButton: Button = dialog.findViewById(R.id.saveBtn)
         val editor = prefs.edit()

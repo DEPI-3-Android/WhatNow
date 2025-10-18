@@ -15,7 +15,7 @@ import retrofit2.Response
 import com.google.firebase.firestore.FirebaseFirestore
 
 class NewsActivity : AppCompatActivity() {
-    private val apiKey = BuildConfig.NEWS_API_KEY // your API key for GNews
+    private val apiKey = BuildConfig.NEWS_API_KEY
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
