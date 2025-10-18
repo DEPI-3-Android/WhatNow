@@ -1,6 +1,7 @@
 package com.acms.whatnow
 
 import android.app.Dialog
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -20,6 +21,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isGone
 import com.acms.whatnow.databinding.ActivitySettingsBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
@@ -45,7 +48,11 @@ class SettingsActivity : AppCompatActivity() {
             insets
         }
         setupCountrySpinner()
-
+        binding.logOutBtn.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(Intent(this, SignUpActivity::class.java))
+            finish()
+        }
         binding.theme.setOnClickListener {
             modeSetupDialog(getString(R.string.choose_theme))
         }
@@ -55,6 +62,7 @@ class SettingsActivity : AppCompatActivity() {
 
     }
     private fun setupCountrySpinner() {
+        // Create an ArrayAdapter using the string array and a default spinner layout
         val countriesList = ArrayAdapter.createFromResource(
             this,
             R.array.countries_array,
@@ -64,10 +72,20 @@ class SettingsActivity : AppCompatActivity() {
         binding.countriesSpinner.adapter = countriesList
         //------------------------------------------------------
         val savedCode = prefs.getString("countryCode" , "ww")
-        val countryCodes = arrayOf("ww", "us", "de", "it", "fr", "gb", "ru")
-        val initialPosition = countryCodes.indexOf(savedCode)
+        // Preventing the onItemSelected listener from auto selection when the activity created
+        // Getting the position of the saved country in the adapter
+        val initialPosition = countriesList.getPosition(savedCode)
         if (initialPosition >= 0) {
             binding.countriesSpinner.setSelection(initialPosition , false)
+        }
+        val countryName = when (savedCode) {
+            "us" -> getString(R.string.usa)
+            "de" -> getString(R.string.de)
+            "it" -> getString(R.string.it)
+            "fr" -> getString(R.string.fr)
+            "gb" -> getString(R.string.en)
+            "ru" -> getString(R.string.ru)
+            else -> getString(R.string.ww)
         }
         //------------------------------------------------------
         binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -78,16 +96,17 @@ class SettingsActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedCountry = parent?.getItemAtPosition(position).toString()
-                val countryCodes = arrayOf("ww", "us", "de", "it", "fr", "gb", "ru")
-                val selectedCode = countryCodes[position]
-                val currentCode = prefs.getString("countryCode", "ww")
-                if (currentCode != selectedCode) {
-                    prefs.edit().putString("countryCode", selectedCode).apply()
-                    Toast.makeText(
-                        this@SettingsActivity,
-                        getString(R.string.switched_country) + currentCode,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                if (savedCode != selectedCountry) {
+                    // Getting a reference to the shared preferences
+                    val prefs = getSharedPreferences("NewRegion" , MODE_PRIVATE)
+                    // Get the editor to modify the preferences
+                    val editor = prefs.edit()
+                    // Save the country using key-value pair
+                    editor.putString("countryCode" , selectedCountry)
+                    // Saving changes asynchronously
+                    editor.apply()
+                    // Toast to confirm your selection
+                    Toast.makeText(this@SettingsActivity , "Switched to $selectedCountry" , Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -95,7 +114,7 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
     }
-    private fun langSetupDialog(title: String) {
+    fun langSetupDialog(title: String) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
@@ -145,7 +164,7 @@ class SettingsActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun modeSetupDialog(title: String) {
+    fun modeSetupDialog(title: String) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
