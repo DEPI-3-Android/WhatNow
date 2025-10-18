@@ -9,7 +9,6 @@
         <item name="materialButtonStyle">@style/Widget.MyApp.Button</item>
         <item name="android:textColorHighlight">@color/error</item>
 
-
         <item name="colorSecondary">@color/blue</item>
         <item name="colorOnSecondary">@color/background</item>
 
