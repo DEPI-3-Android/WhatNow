@@ -27,13 +27,12 @@
     <string name="english" translatable="false">English</string>
     <string name="arabic" translatable="false">العربية</string>
     <string name="choose_lang">Choose language</string>
-    <string name="ww">WorldWide</string>
     <string name="usa">United States</string>
     <string name="share"> Share </string>
     <string name="description">Description</string>
     <string name="article_title">Article Title</string>
     <string name="favorite"> Favorite </string>
-    <string name="switched_country"> switched_country %s </string>
+    <string name="switched_country">Switched to </string>
     <string name="no_articles"> No Articles Found </string>
     <string name="de">Germany</string>
     <string name="it">Italy</string>
@@ -58,8 +57,8 @@
     <string name="business">Business</string>
     <string name="entertainment">Entertainment</string>
     <string name="general">General</string>
-    <string name="curr_region">Current Region: USA</string>
-    <string name="short_name">Short Name: USA</string>
+    <string name="curr_region">Current Region: </string>
+    <string name="short_name">Short Name: </string>
     <string name="check_news">Check The Latest News</string>
     <string name="top_news">Top News</string>
     <string name="headline">Headline</string>
@@ -68,7 +67,6 @@
     <string name="logout">Logout</string>
 
     <string-array name="countries_array">
-        <item>@string/ww</item>
         <item>@string/usa</item>
         <item>@string/de</item>
         <item>@string/it</item>

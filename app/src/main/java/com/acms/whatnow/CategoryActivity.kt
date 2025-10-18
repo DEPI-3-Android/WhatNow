@@ -3,10 +3,8 @@ package com.acms.whatnow
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.PopupMenu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +13,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.acms.whatnow.databinding.ActivityCategoryBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class CategoryActivity : AppCompatActivity() {
 
@@ -86,8 +86,8 @@ class CategoryActivity : AppCompatActivity() {
                         }
 
                         R.id.action_logout -> {
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
+                            Firebase.auth.signOut()
+                            startActivity(Intent(this, SignUpActivity::class.java))
                             finish()
                             true
                         }
@@ -112,43 +112,28 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun loadAndDisplayCountry() {
-        val prefs = getSharedPreferences("NewRegion", MODE_PRIVATE)
-        val savedCountry = prefs.getString("countryCode", "ww")
-
-        binding.showCountryName.text = "Current Region: $savedCountry"
-
-        val countryCode = when (savedCountry) {
-            "United States" -> "us"
-            "Germany" -> "de"
-            "Spain" -> "es"
-            "Italy" -> "it"
-            "France" -> "fr"
-            "England" -> "gb"
-            "Russia" -> "ru"
-            else -> "ww"
+        val savedCountry = prefs.getString("countryCode", "us")
+        val displayName = when (savedCountry) {
+            "de" -> getString(R.string.de)
+            "it" -> getString(R.string.it)
+            "fr" -> getString(R.string.fr)
+            "gb" -> getString(R.string.en)
+            "ru" -> getString(R.string.ru)
+            else -> getString(R.string.usa)
         }
-
-        binding.showSelectedCountryCode.text = "Short Name: $countryCode"
+        binding.showCountryName.text = getString(R.string.curr_region) + " $displayName"
+        binding.showSelectedCountryCode.text = getString(R.string.short_name) + " $savedCountry"
     }
 
     private fun getCountryCode(): String {
-        val prefs = getSharedPreferences("NewRegion", MODE_PRIVATE)
-        return when (prefs.getString("countryCode", "ww")) {
-            "United States" -> "us"
-            "Germany" -> "de"
-            "Spain" -> "es"
-            "Italy" -> "it"
-            "France" -> "fr"
-            "England" -> "gb"
-            "Russia" -> "ru"
-            else -> "ww"
-        }
+        return prefs.getString("countryCode", "us") ?: "us"
     }
+
 
     private fun openCategory(category: String) {
         val intent = Intent(this, NewsActivity::class.java)
         intent.putExtra("category", category.lowercase())
-        intent.putExtra("country", getCountryCode())
+        intent.putExtra("country", prefs.getString("countryCode", "us"))
         startActivity(intent)
     }
 }

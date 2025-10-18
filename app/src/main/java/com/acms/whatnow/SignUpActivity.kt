@@ -182,7 +182,7 @@ class SignUpActivity : AppCompatActivity() {
         launcher.launch(signInIntent)
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
+    /*private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
@@ -200,5 +200,28 @@ class SignUpActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+    }*/
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        Log.d("DEBUG", "Google ID Token: $idToken")
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.d("DEBUG", "Sign-in successful!")
+                    val intent = Intent(this, CategoryActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Log.e("DEBUG", "Sign-in failed", task.exception)
+                    Snackbar.make(
+                        binding.root,
+                        "Authentication Failed: ${task.exception?.message}",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
     }
+
 }
