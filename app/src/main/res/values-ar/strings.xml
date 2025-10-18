@@ -49,6 +49,7 @@
     <string name="curr_region">المنطقة الحالية</string>
     <string name="short_name">الأسم المختصر</string>
     <string name="check_news">تطلع على اخر الأخبار</string>
+    <string name="headline">عنوان</string>
     <string name="top_news">اهم الأخبار</string>
     <string name="settings">الأعدادات</string>
     <string name="share"> مشاركة </string>

@@ -45,7 +45,7 @@
             android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Headline HeadlineHeadlineHeadlineHeadlinevHeadlineHeadlineHeadline"
+            android:text="@string/headline"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -60,7 +60,7 @@
             android:layout_marginHorizontal="12dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="Description DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
+            android:text="@string/description"
             android:textColor="@color/white"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@id/shadow"
@@ -76,6 +76,7 @@
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/blue"
             android:src="@drawable/share"
+            android:contentDescription="@string/share"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/starFab" />
 
@@ -86,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/blue"
-            android:contentDescription="Favorite"
+            android:contentDescription="@string/favorite"
             android:src="@drawable/star"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
