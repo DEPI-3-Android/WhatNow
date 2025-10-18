@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.acms.whatnow.models.Article
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -41,19 +42,18 @@ class NewsAdapter(
         holder.title.text = article.title ?: "No Title"
         holder.description.text = article.description ?: "No description available"
 
-        // ✅ Load image correctly from API ("image" → urlToImage)
         val imageUrl = article.urlToImage
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_news)
                 .error(R.drawable.ic_news)
+                .transition(DrawableTransitionOptions.withCrossFade(1000))
                 .into(holder.image)
         } else {
             holder.image.setImageResource(R.drawable.ic_news)
         }
 
-        // ✅ Favorites
         updateStarAppearance(holder.starFab, article.favorite)
 
         holder.starFab.setOnClickListener {
@@ -77,7 +77,6 @@ class NewsAdapter(
             }
         }
 
-        // ✅ Open article on click
         holder.itemView.setOnClickListener {
             article.url?.let { url ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -85,7 +84,6 @@ class NewsAdapter(
             }
         }
 
-        // ✅ Share button
         holder.shareFab.setOnClickListener {
             ShareCompat.IntentBuilder(holder.itemView.context)
                 .setType("text/plain")

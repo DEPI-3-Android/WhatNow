@@ -33,26 +33,12 @@ class CategoryActivity : AppCompatActivity() {
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-
-        // Adjust padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-//        // ---- Toolbar with back button ----
-//        setSupportActionBar(binding.categoryToolbar)
-//        binding.categoryToolbar.setNavigationOnClickListener {
-//            finish() // Go back to previous activity (LoginActivity if coming from there)
-//        }
-//
-//        // ---- Settings button ----
-//        binding.settingsButton.setOnClickListener {
-//            startActivity(Intent(this, SettingsActivity::class.java))
-//        }
-
-        // load toolbar
         val toolbar: Toolbar = findViewById(R.id.topmenu)
         setSupportActionBar(toolbar)
 
@@ -69,25 +55,20 @@ class CategoryActivity : AppCompatActivity() {
 
     }
 
-
-    // load toolbar menu first
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_menu, menu)
         return true
     }
 
-    // handling pressed icons in toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
 
-            // favorite list icon handler
             R.id.action_favorite -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
                 startActivity(intent)
                 true
             }
 
-            // when more_menu icon pressed--> popup_menu appears
             R.id.action_more -> {
                 val moreItemView = findViewById<Toolbar>(R.id.topmenu)
                 val popupMenu = PopupMenu(this, moreItemView)
@@ -95,7 +76,6 @@ class CategoryActivity : AppCompatActivity() {
 
                 popupMenu.menuInflater.inflate(R.menu.more_menu, popupMenu.menu)
 
-                // popup menu handler
                 popupMenu.setOnMenuItemClickListener { menuItem ->
                     when (menuItem.itemId) {
 
@@ -116,7 +96,6 @@ class CategoryActivity : AppCompatActivity() {
                     }
                 }
 
-                // show popup menu
                 popupMenu.show()
                 true
             }
@@ -133,7 +112,6 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun loadAndDisplayCountry() {
-        // Get selected country from SharedPreferences set in SettingsActivity
         val prefs = getSharedPreferences("NewRegion", MODE_PRIVATE)
         val savedCountry = prefs.getString("countryCode", "ww")
 

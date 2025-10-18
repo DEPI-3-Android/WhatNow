@@ -27,7 +27,6 @@
     <string name="ww">حول العالم</string>
     <string name="usa">الولايات المتحدة الأمريكية</string>
     <string name="de">المانبا</string>
-    <string name="sp">اسبانيا</string>
     <string name="it">ايطاليا</string>
     <string name="fr">فرنسا</string>
     <string name="en">انجلترا</string>
@@ -56,13 +55,13 @@
     <string name="description"> وصف </string>
     <string name="article_title"> عنوان المقال </string>
     <string name="favorite"> مفضل </string>
+    <string name="switched_country">تم التبديل ل</string>
     <string name="logout">تسجيل الخروج</string>
 
     <string-array name="countries_array">
         <item>@string/ww</item>
         <item>@string/usa</item>
         <item>@string/de</item>
-        <item>@string/sp</item>
         <item>@string/it</item>
         <item>@string/fr</item>
         <item>@string/en</item>
