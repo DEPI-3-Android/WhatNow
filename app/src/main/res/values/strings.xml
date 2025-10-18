@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">What Now</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="con_password">Confirm password</string>
+    <string name="new_user">Do not have an account? <font color="#1877F2"><u>Sign up now!</u></font></string>
+    <string name="old_user">Have an account? <font color="#1877F2"><u>Login now!</u></font></string>
+    <string name="or">OR</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="you_have_been_missed">You have been missed!</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="join_whatnow_to">Join WhatNow to explore what’s happening around the world, stay updated with the news, and save your favorites.</string>
+    <string name="google">Continue with Google</string>
+    <string name="required">this field is required!</string>
+    <string name="Passwords_dont_match">Passwords don’t match</string>
+    <string name="check_your_email">Please check your email to activate your account.</string>
+    <string name="password_long">Password must be at least 6 characters long.</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="pass_reset">Please check your email to reset your password.</string>
+    <string name="verify_email">Please verify your email</string>
+    <string name="login_failed">Login failed: please check your email and password.</string>
+    <string name="forgot_your_password"><u>Forgot your password?</u></string>
+    <string name="log_out">Log out</string>
+    <string name="english" translatable="false">English</string>
+    <string name="arabic" translatable="false">العربية</string>
+    <string name="choose_lang">Choose language</string>
+    <string name="ww">WorldWide</string>
+    <string name="usa">United States</string>
+    <string name="de">Germany</string>
+    <string name="sp">Spain</string>
+    <string name="it">Italy</string>
+    <string name="fr">France</string>
+    <string name="en">England</string>
+    <string name="ru">Russia</string>
+    <string name="system_default">System default</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="choose_theme">Choose theme</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_region">Choose region</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="top_menu">WhatNow</string>
+    <string name="categories">Categories</string>
+    <string name="sports">Sports</string>
+    <string name="health">Health</string>
+    <string name="technology">Technology</string>
+    <string name="science">Science</string>
+    <string name="business">Business</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="general">General</string>
+    <string name="curr_region">Current Region: USA</string>
+    <string name="short_name">Short Name: USA</string>
+    <string name="check_news">Check News</string>
+    <string name="top_news">Top News</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+
+    <string-array name="countries_array">
+        <item>@string/ww</item>
+        <item>@string/usa</item>
+        <item>@string/de</item>
+        <item>@string/sp</item>
+        <item>@string/it</item>
+        <item>@string/fr</item>
+        <item>@string/en</item>
+        <item>@string/ru</item>
+    </string-array>
+    <string-array name="modes_array">
+        <item>@string/system_default</item>
+        <item>@string/light</item>
+        <item>@string/dark</item>
+    </string-array>
+    <string-array name="lang_array">
+        <item>@string/english</item>
+        <item>@string/arabic</item>
+    </string-array>
+</resources>
