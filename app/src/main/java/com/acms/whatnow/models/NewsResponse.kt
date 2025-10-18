@@ -9,16 +9,21 @@ data class NewsResponse(
 )
 
 data class Article(
-    val source: Source? = null,
+    val id: String? = null,
     val title: String? = null,
     val description: String? = null,
+    val content: String? = null,
     val url: String? = null,
-    @SerializedName("urlToImage") val urlToImage: String? = null,
-    @SerializedName("publishedAt") val publishedAt: String? = null, // Added this field
+    @SerializedName("image") val urlToImage: String? = null,
+    val publishedAt: String? = null,
+    val lang: String? = null,
+    val source: Source? = null,
     var favorite: Boolean = false
 )
 
 data class Source(
     val id: String? = null,
-    val name: String? = null
+    val name: String? = null,
+    val url: String? = null,
+    val country: String? = null
 )
